@@ -1,7 +1,5 @@
 package step_definitions;
 
-import helpers.DataHelper;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -37,7 +35,7 @@ public class ShoppingCart{
     }
     
     @When("^I open automationpractice website$")
-    public void i_open_automationpractice_website() throws Throwable {
+    public void i_open_automationpractice_website() {
         // Write code here that turns the phrase above into concrete actions
     	driver.get("http://automationpractice.com");
     }

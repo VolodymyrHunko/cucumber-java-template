@@ -11,6 +11,6 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions (
 		features = "classpath:features",
 		plugin = {"pretty", "html:target/cucumber-html-report"},
-		tags = {}
+		tags = {"@excel"}
 		)
 public class RunCukesTest{ }

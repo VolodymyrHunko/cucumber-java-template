@@ -8,7 +8,7 @@ public abstract class BaseClass {
 
 	public  BaseClass(WebDriver driver){
 		BaseClass.driver = driver;
-		BaseClass.bResult = true;
+		bResult = true;
 	}
 
 }
