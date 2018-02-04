@@ -1,9 +1,10 @@
 # new feature
 # Tags: optional
+@excel
 
 Feature: A description
 
-  @excel
+
   Scenario: create, update excel workbook, add data and delete data
     When I create the excel worbook "Random.xlsx"
     Then I print the data inside the workbook

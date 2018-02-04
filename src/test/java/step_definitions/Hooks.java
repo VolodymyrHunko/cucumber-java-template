@@ -16,8 +16,8 @@ public class Hooks{
     public static WebDriver driver;
 
     
-    @Before
-    /**
+    @Before (value = "~@noweb" ,order = 1) //will exclude @Smoke tagged scenarios and run 1-st if several @Before
+    /*
      * Delete all cookies at the start of each scenario to avoid
      * shared state between tests
      */
@@ -29,8 +29,8 @@ public class Hooks{
     }
 
      
-    @After
-    /**
+    @After(value ="~@noweb",order = 0)
+    /*
      * Embed a screenshot in test report if test is marked as failed
      */
     public void embedScreenshot(Scenario scenario) {
@@ -38,9 +38,8 @@ public class Hooks{
         if(scenario.isFailed()) {
         try {
         	 scenario.write("Current Page URL is " + driver.getCurrentUrl());
-//            byte[] screenshot = getScreenshotAs(OutputType.BYTES);
-            byte[] screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
-            scenario.embed(screenshot, "image/png");
+             byte[] screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
+             scenario.embed(screenshot, "image/png");
         } catch (WebDriverException somePlatformsDontSupportScreenshots) {
             System.err.println(somePlatformsDontSupportScreenshots.getMessage());
         }

@@ -9,8 +9,11 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions (
+		monochrome = false,
 		features = "classpath:features",
-		plugin = {"pretty", "html:target/cucumber-html-report"},
-		tags = {"@excel"}
+		glue = {"step_definitions"},
+		format = {"pretty", "html:target/cucumber-html-report"}
+		,tags = {"@JSON"}
+		//,dryRun = true
 		)
 public class RunCukesTest{ }
