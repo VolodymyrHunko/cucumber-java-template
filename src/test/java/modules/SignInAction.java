@@ -1,34 +1,41 @@
 package modules;
 
 import helpers.Log;
-
-import java.util.HashMap;
-
+import helpers.ManagerPageObject;
 import org.openqa.selenium.WebDriver;
 import org.testng.Reporter;
-
 import pageobjects.AutomationHomePage;
 import pageobjects.LoginPage;
+import step_definitions.Hooks;
+
+import java.util.HashMap;
 
 
 public class SignInAction {
 
-	public static void Execute(WebDriver driver,HashMap<String,String> map) throws Exception{
-		
-		AutomationHomePage.sign_in.click();
-		Log.info("Click action is perfromed on My Account link" );
+    public static void Execute(WebDriver driver, HashMap<String, String> map) {
 
-		LoginPage.email.sendKeys(map.get("username"));
+		/*
+			by using pageObjectManager instance we can avoid creation a new POM every time
+			it created only once and used everywhere
+		 */
+        AutomationHomePage automationHomePage = Hooks.managerPageObject.getAutomationHomePage();
+        LoginPage loginPage = Hooks.managerPageObject.getLoginPage();
 
-		Log.info(" is entered in UserName text box" );
-		
-		LoginPage.password.sendKeys(map.get("password"));
-		Log.info(" is entered in Password text box" );
+        automationHomePage.sign_in_click();
+//        Log.info("Click action is performed on My Account link");
 
-		LoginPage.signin_button.click();
-		Log.info("Click action is performed on Submit button");
+        loginPage.email_sendKeys(map.get("username"));
 
-		Reporter.log("SignIn Action is successfully perfomred");
+//        Log.info(" is entered in UserName text box");
 
-	}
+        loginPage.password_sendKeys(map.get("password"));
+//        Log.info(" is entered in Password text box");
+
+        loginPage.signin_button_click();
+//        Log.info("Click action is performed on Submit button");
+
+        Reporter.log("SignIn Action is successfully perfomred");
+
+    }
 }
